@@ -36,9 +36,6 @@ bot.dialog('/', [
     function (session, result){
         session.send('Hi ' + result.response + '! What is your phone number? (Please enter in xxx-xxx-xxxx format)');
     },
-    function (session, result){
-        session.send('Got it, your number is: %s', results.response);
-    },
     ]);
 
 if (useEmulator) {
