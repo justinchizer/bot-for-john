@@ -30,24 +30,24 @@ var basicQnAMakerDialog = new builder_cognitiveservices.QnAMakerDialog({
 var data = {}
 var options
 
-bot.dialog('/', dialog)
+bot.basicQnAMakerDialog('/', basicQnAMakerDialog)
 
 //LUIS
 
-dialog.matches('greeting', [
+basicQnAMakerDialog.matches('greeting', [
     function (session, args, next) {
         session.send('Welcome to Green Machine, I am Patricia the chat bot assistant!')
         session.beginDialog('/mainMenu', args)
     }
 ])
 
-dialog.matches('quote', [
+basicQnAMakerDialog.matches('quote', [
     function(session, args, next){
         session.beginDialog('/Quote', args)
     }
 ])
 
-bot.dialog('/mainMenu', [
+bot.basicQnAMakerDialog('/mainMenu', [
     function(session) {
         builder.Prompts.choice(session, ' What can I help you with today'['Get a Quote', 'Schedule Appointment'])
     },
