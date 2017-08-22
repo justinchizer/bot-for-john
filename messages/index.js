@@ -30,50 +30,25 @@ var basicQnAMakerDialog = new builder_cognitiveservices.QnAMakerDialog({
 var data = {}
 var options
 
-bot.basicQnAMakerDialog('/', basicQnAMakerDialog)
 
 //LUIS
+session.send('I\'m sorry, I didn\'t understand..')
+session.beginDialog('/mainMenu')
 
-basicQnAMakerDialog.matches('greeting', [
-    function (session, args, next) {
-        session.send('Welcome to Green Machine, I am Patricia the chat bot assistant!')
-        session.beginDialog('/mainMenu', args)
-    }
-])
+// Main menu
 
-basicQnAMakerDialog.matches('quote', [
-    function(session, args, next){
-        session.beginDialog('/Quote', args)
-    }
-])
-
-bot.basicQnAMakerDialog('/mainMenu', [
-    function(session) {
-        builder.Prompts.choice(session, ' What can I help you with today'['Get a Quote', 'Schedule Appointment'])
-    },
-    function (session, results) {
-        switch (results.response.index) {
-            case 0:
-
-            session.beginDialog('/Quote')
-            break
-
-            case 1:
-            session.beginDialog('/Schedule')
-            break
-        }
-    }
+bot.dialog('/mainMenu', [
+    session.send('Search for products')
 ])
 
 
-
-if (useEmulator) {
-    var restify = require('restify');
-    var server = restify.createServer();
-    server.listen(3978, function() {
-        console.log('test bot endpont at http://localhost:3978/api/messages');
-    });
-    server.post('/api/messages', connector.listen());    
-} else {
-    module.exports = { default: connector.listen() }
-}
+// if (useEmulator) {
+//     var restify = require('restify');
+//     var server = restify.createServer();
+//     server.listen(3978, function() {
+//         console.log('test bot endpont at http://localhost:3978/api/messages');
+//     });
+//     server.post('/api/messages', connector.listen());    
+// } else {
+//     module.exports = { default: connector.listen() }
+// }
