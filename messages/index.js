@@ -32,6 +32,7 @@ var options
 
 
 //LUIS
+bot.dialog('/', basicQnAMakerDialog)
 session.send('I\'m sorry, I didn\'t understand..')
 session.beginDialog('/mainMenu')
 
