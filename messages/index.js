@@ -31,16 +31,12 @@ var data = {}
 var options
 
 
-//LUIS
-bot.dialog('/', basicQnAMakerDialog)
-session.send('I\'m sorry, I didn\'t understand..')
-session.beginDialog('/mainMenu')
+bot.dialog('/',
 
-// Main menu
-
-bot.dialog('/mainMenu', [
-    session.send('Search for products')
-])
+            function (session) {
+              session.send('Hello')
+              
+            })
 
 
 // if (useEmulator) {
